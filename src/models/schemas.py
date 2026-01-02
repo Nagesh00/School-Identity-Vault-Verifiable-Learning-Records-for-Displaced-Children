@@ -3,7 +3,7 @@ Data models for School Identity Vault
 """
 from datetime import datetime
 from enum import Enum
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
 
 
@@ -41,8 +41,8 @@ class ExtractedData(BaseModel):
     student_id: Optional[str] = None
     institution_name: Optional[str] = None
     issue_date: Optional[str] = None
-    subjects: List[Dict[str, any]] = []
-    grades: List[Dict[str, any]] = []
+    subjects: List[Dict[str, Any]] = []
+    grades: List[Dict[str, Any]] = []
     raw_text: str
     confidence_score: float
     extraction_date: datetime = Field(default_factory=datetime.utcnow)
@@ -63,7 +63,7 @@ class LearningProfile(BaseModel):
     student_name: str
     student_id: Optional[str] = None
     documents: List[str] = []
-    subjects_completed: List[Dict[str, any]] = []
+    subjects_completed: List[Dict[str, Any]] = []
     curriculum_mappings: List[CurriculumMapping] = []
     overall_confidence: float
     created_date: datetime = Field(default_factory=datetime.utcnow)

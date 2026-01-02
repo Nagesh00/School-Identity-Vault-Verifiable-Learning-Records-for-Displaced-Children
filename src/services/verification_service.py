@@ -2,8 +2,8 @@
 School verification service
 """
 import uuid
+from typing import List, Optional, Dict
 from datetime import datetime
-from typing import List, Optional
 
 from ..models.schemas import (
     VerificationRecord,

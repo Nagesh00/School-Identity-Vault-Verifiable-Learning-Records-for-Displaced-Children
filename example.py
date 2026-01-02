@@ -86,11 +86,7 @@ async def main():
     print("   Extracting data from document...")
     
     # For text file, we'll use the text directly
-    from src.services.extraction_service import AIExtractionService
-    extraction_service_demo = AIExtractionService()
-    
-    # Manually create extraction for demo
-    parsed_data = extraction_service_demo.parse_educational_data(simulated_text)
+    parsed_data = extraction_service.parse_educational_data(simulated_text)
     
     from src.models.schemas import ExtractedData
     extracted = ExtractedData(
