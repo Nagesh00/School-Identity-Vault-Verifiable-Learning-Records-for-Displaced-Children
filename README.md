@@ -1,8 +1,27 @@
 # School Identity Vault: Verifiable Learning Records for Displaced Children
 
+> 🏆 **Microsoft Imagine Cup 2026 Project**  
+> Uses Azure AI Document Intelligence + Azure OpenAI Service
+
 ## Overview
 
-School Identity Vault is a comprehensive system that preserves education records for displaced children, ensuring their learning credentials are portable, verifiable, and tamper-proof. The system enables NGOs and families to upload photos of certificates or report cards, uses AI to extract and reconstruct learning profiles, maps them to local curricula with confidence levels, allows schools to verify results, and stores cryptographic hashes with digital signatures on a permissioned blockchain.
+School Identity Vault is a comprehensive system that preserves education records for displaced children, ensuring their learning credentials are portable, verifiable, and tamper-proof. Built with **Microsoft Azure AI services** to compete in Imagine Cup 2026, this solution helps 48 million displaced children worldwide maintain their educational records across borders.
+
+The system enables NGOs and families to upload photos of certificates or report cards, uses **Microsoft AI** to extract and reconstruct learning profiles, maps them to local curricula with confidence levels, allows schools to verify results, and stores cryptographic hashes with digital signatures on a permissioned blockchain.
+
+## 🎯 Microsoft Imagine Cup 2026 Compliance
+
+This project meets all Imagine Cup 2026 requirements:
+
+✅ **Two Microsoft AI Services**:
+1. **Azure AI Document Intelligence** - OCR and document analysis
+2. **Azure OpenAI Service** - Intelligent text processing and extraction
+
+✅ **Commercial Viability**: Clear revenue model targeting $1.8B refugee education market  
+✅ **Technical MVP**: Full working solution with 10+ API endpoints  
+✅ **Social Impact**: Helps 48 million displaced children access education  
+
+📄 [Full Imagine Cup Compliance Document](IMAGINE_CUP_2026.md)
 
 ## Key Features
 
@@ -12,8 +31,9 @@ School Identity Vault is a comprehensive system that preserves education records
 - Secure file storage with hash verification
 - Document type classification
 
-### 2. **AI-Powered Data Extraction**
-- OCR-based text extraction from documents
+### 2. **AI-Powered Data Extraction** (Microsoft Azure AI)
+- **Azure AI Document Intelligence** for OCR and layout analysis
+- **Azure OpenAI Service** for intelligent text processing
 - Intelligent parsing of student information
 - Subject and grade extraction
 - Confidence scoring for data quality
@@ -75,8 +95,10 @@ School Identity Vault is a comprehensive system that preserves education records
 
 ### Prerequisites
 - Python 3.8 or higher
-- Tesseract OCR (optional, for image processing)
-- Node.js and npm (optional, for blockchain development)
+- **Microsoft Azure Account** (for Imagine Cup AI services)
+- Azure AI Document Intelligence resource
+- Azure OpenAI Service resource
+- Tesseract OCR (optional, for fallback)
 
 ### Setup
 
@@ -97,16 +119,33 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Install Tesseract OCR (for image processing):
-- **Ubuntu/Debian**: `sudo apt-get install tesseract-ocr`
-- **macOS**: `brew install tesseract`
-- **Windows**: Download from [GitHub](https://github.com/UB-Mannheim/tesseract/wiki)
+4. **Configure Microsoft Azure AI Services** (Required for Imagine Cup):
+
+   a. Create Azure AI Document Intelligence resource:
+   - Go to [Azure Portal](https://portal.azure.com)
+   - Create "Azure AI Document Intelligence" resource
+   - Copy endpoint and key
+
+   b. Create Azure OpenAI Service resource:
+   - Create "Azure OpenAI" resource
+   - Deploy a model (e.g., gpt-4 or gpt-3.5-turbo)
+   - Copy endpoint, key, and deployment name
 
 5. Configure environment variables:
 ```bash
 cp .env.example .env
-# Edit .env with your configuration
+# Edit .env with your Azure credentials:
+# AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
+# AZURE_DOCUMENT_INTELLIGENCE_KEY=your_key
+# AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+# AZURE_OPENAI_KEY=your_key
+# AZURE_OPENAI_DEPLOYMENT=your_deployment_name
 ```
+
+6. (Optional) Install Tesseract OCR for fallback:
+- **Ubuntu/Debian**: `sudo apt-get install tesseract-ocr`
+- **macOS**: `brew install tesseract`
+- **Windows**: Download from [GitHub](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ## Usage
 
@@ -239,12 +278,22 @@ Contains:
 
 ## Technology Stack
 
+### Microsoft AI Services (Imagine Cup 2026)
+- **Azure AI Document Intelligence**: OCR and document analysis
+- **Azure OpenAI Service**: Intelligent text processing and extraction
+
+### Core Technologies
 - **Backend**: FastAPI (Python)
-- **AI/ML**: OpenAI API, Tesseract OCR
-- **Cryptography**: Python cryptography library
+- **Cryptography**: Python cryptography library (RSA-2048, SHA-256)
 - **Blockchain**: Web3.py (Ethereum compatible)
 - **Data Validation**: Pydantic
 - **Image Processing**: Pillow, pdf2image
+
+### Future Azure Integration
+- **Azure Storage**: Secure document storage
+- **Azure Key Vault**: Credential management
+- **Azure Cosmos DB**: Scalable database
+- **Azure Blockchain Service**: Enhanced blockchain integration
 
 ## Contributing
 

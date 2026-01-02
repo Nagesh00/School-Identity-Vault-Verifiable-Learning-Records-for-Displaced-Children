@@ -34,12 +34,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Initialize services
+# Initialize services with Microsoft Azure AI Services (Imagine Cup 2026)
 document_service = DocumentService(
     upload_dir=os.getenv("UPLOAD_DIR", "./uploads")
 )
 extraction_service = AIExtractionService(
-    openai_api_key=os.getenv("OPENAI_API_KEY")
+    azure_doc_endpoint=os.getenv("AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT"),
+    azure_doc_key=os.getenv("AZURE_DOCUMENT_INTELLIGENCE_KEY"),
+    azure_openai_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+    azure_openai_key=os.getenv("AZURE_OPENAI_KEY"),
+    azure_openai_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT")
 )
 profile_service = LearningProfileService()
 verification_service = VerificationService()

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
 Example usage script for School Identity Vault
-Demonstrates the complete workflow
+Demonstrates the complete workflow using Microsoft Azure AI Services (Imagine Cup 2026)
+
+Note: This demo uses fallback mode for testing without Azure credentials.
+For full Azure AI functionality, configure Azure credentials in .env file.
 """
 import asyncio
 import os
@@ -25,13 +28,21 @@ async def main():
     """Demonstrate the School Identity Vault workflow"""
     print("=" * 70)
     print("School Identity Vault - Example Workflow")
+    print("Microsoft Imagine Cup 2026 - Azure AI Services")
     print("=" * 70)
     print()
     
-    # Initialize services
+    # Initialize services with Azure AI (will use fallback if not configured)
     print("1. Initializing services...")
+    print("   Note: Demo mode - configure Azure credentials for full AI features")
     document_service = DocumentService(upload_dir="./uploads")
-    extraction_service = AIExtractionService()
+    extraction_service = AIExtractionService(
+        azure_doc_endpoint=os.getenv("AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT"),
+        azure_doc_key=os.getenv("AZURE_DOCUMENT_INTELLIGENCE_KEY"),
+        azure_openai_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+        azure_openai_key=os.getenv("AZURE_OPENAI_KEY"),
+        azure_openai_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT")
+    )
     profile_service = LearningProfileService()
     verification_service = VerificationService()
     blockchain_service = BlockchainService()
@@ -81,9 +92,10 @@ async def main():
     print(f"   ✓ File hash: {document.file_hash[:16]}...")
     print()
     
-    # Step 2: Extract data using AI
-    print("3. AI Data Extraction")
-    print("   Extracting data from document...")
+    # Step 2: Extract data using Microsoft Azure AI
+    print("3. Microsoft Azure AI Data Extraction")
+    print("   Using Azure Document Intelligence + Azure OpenAI Service...")
+    print("   (Fallback mode active - configure Azure for full features)")
     
     # For text file, we'll use the text directly
     parsed_data = extraction_service.parse_educational_data(simulated_text)
