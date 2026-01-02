@@ -1,0 +1,27 @@
+{
+  "name": "school-identity-vault",
+  "version": "1.0.0",
+  "description": "Verifiable Learning Records for Displaced Children",
+  "type": "module",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install && cd ../ml-engine && pip install -r requirements.txt",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\" \"cd ml-engine && python -m uvicorn src.main:app --reload\"",
+    "test": "concurrently \"cd backend && npm test\" \"cd frontend && npm test\" \"cd ml-engine && pytest\"",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "education",
+    "refugees",
+    "blockchain",
+    "ai",
+    "verification",
+    "displaced-children"
+  ],
+  "author": "School Identity Vault Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
