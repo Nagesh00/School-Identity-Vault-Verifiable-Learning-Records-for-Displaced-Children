@@ -3,7 +3,7 @@ Learning profile reconstruction and curriculum mapping service
 """
 import uuid
 from typing import List, Dict, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 
 from ..models.schemas import (
     LearningProfile,
@@ -162,6 +162,6 @@ class LearningProfileService:
                     profile.curriculum_mappings.append(mapping)
         
         # Update last modified date
-        profile.last_updated = datetime.utcnow()
+        profile.last_updated = datetime.now(timezone.utc)
         
         return profile

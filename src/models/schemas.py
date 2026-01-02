@@ -1,7 +1,7 @@
 """
 Data models for School Identity Vault
 """
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Optional, List, Dict, Any
 from pydantic import BaseModel, Field
@@ -28,7 +28,7 @@ class UploadedDocument(BaseModel):
     id: str
     filename: str
     document_type: DocumentType
-    upload_date: datetime = Field(default_factory=datetime.utcnow)
+    upload_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     uploader_id: str
     file_path: str
     file_hash: str
@@ -45,7 +45,7 @@ class ExtractedData(BaseModel):
     grades: List[Dict[str, Any]] = []
     raw_text: str
     confidence_score: float
-    extraction_date: datetime = Field(default_factory=datetime.utcnow)
+    extraction_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class CurriculumMapping(BaseModel):
@@ -66,8 +66,8 @@ class LearningProfile(BaseModel):
     subjects_completed: List[Dict[str, Any]] = []
     curriculum_mappings: List[CurriculumMapping] = []
     overall_confidence: float
-    created_date: datetime = Field(default_factory=datetime.utcnow)
-    last_updated: datetime = Field(default_factory=datetime.utcnow)
+    created_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    last_updated: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class VerificationRecord(BaseModel):
@@ -79,7 +79,7 @@ class VerificationRecord(BaseModel):
     verifier_name: str
     status: VerificationStatus
     notes: Optional[str] = None
-    verification_date: datetime = Field(default_factory=datetime.utcnow)
+    verification_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class BlockchainRecord(BaseModel):
@@ -90,4 +90,4 @@ class BlockchainRecord(BaseModel):
     signature: str
     transaction_hash: Optional[str] = None
     block_number: Optional[int] = None
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))

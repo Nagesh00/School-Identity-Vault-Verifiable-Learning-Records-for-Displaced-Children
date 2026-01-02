@@ -3,7 +3,7 @@ School verification service
 """
 import uuid
 from typing import List, Optional, Dict
-from datetime import datetime
+from datetime import datetime, timezone
 
 from ..models.schemas import (
     VerificationRecord,
@@ -69,7 +69,7 @@ class VerificationService:
             verification.status = status
             if notes:
                 verification.notes = notes
-            verification.verification_date = datetime.utcnow()
+            verification.verification_date = datetime.now(timezone.utc)
         return verification
     
     def is_profile_verified(self, profile_id: str) -> bool:

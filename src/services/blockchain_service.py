@@ -3,7 +3,8 @@ Blockchain integration service for tamper-proof record storage
 """
 import hashlib
 import uuid
-from datetime import datetime
+import logging
+from datetime import datetime, timezone
 from typing import Optional, Dict
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
@@ -16,6 +17,9 @@ except ImportError:
     WEB3_AVAILABLE = False
 
 from ..models.schemas import BlockchainRecord, LearningProfile
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 class BlockchainService:
@@ -125,7 +129,7 @@ class BlockchainService:
                 block_number = receipt['blockNumber']
             except Exception as e:
                 # Blockchain operation failed, continue with local record
-                print(f"Blockchain storage failed: {e}")
+                logger.error(f"Blockchain storage failed: {e}")
         
         # Create blockchain record
         record = BlockchainRecord(

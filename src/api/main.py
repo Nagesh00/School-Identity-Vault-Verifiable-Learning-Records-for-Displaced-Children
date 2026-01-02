@@ -49,6 +49,8 @@ blockchain_service = BlockchainService(
 )
 
 # In-memory storage (in production, use a database)
+# NOTE: These global dictionaries are for demonstration purposes only.
+# In production, implement proper database integration with thread-safe operations.
 documents_db = {}
 extractions_db = {}
 profiles_db = {}
